@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import escapeRegExp from 'escape-string-regexp';
 import sortBy from 'sort-by';
@@ -6,7 +7,8 @@ import sortBy from 'sort-by';
 export default class ListContacts extends Component {
     static propTypes = {
         contacts: PropTypes.array.isRequired,
-        onDeleteContact: PropTypes.func.isRequired
+        onDeleteContact: PropTypes.func.isRequired,
+        onNavigate: PropTypes.func.isRequired
     }
 
     state = {
@@ -48,6 +50,12 @@ export default class ListContacts extends Component {
                         placeholder='Search Contacts'
                         value={query} 
                         onChange={(event) => this.updateQuery(event.target.value)} />
+
+                    <Link 
+                        to="/create"
+                        className='add-contact'>
+                        Add Contact
+                    </Link>
                 </div>
 
                 {showingContacts.length !== contacts.length && (
