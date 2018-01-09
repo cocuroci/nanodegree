@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 import ListContacts from './ListContacts';
+import CreateContact from './CreateContact';
 import * as ContactAPI from './utils/ContactsAPI';
 
 class App extends Component {
@@ -29,9 +31,15 @@ class App extends Component {
 
   render() {
     return (
-      <ListContacts 
-          onDeleteContact={this.removeContact} 
-          contacts={this.state.contacts} />
+      <div>
+        <Route exact path='/' render={() => (
+           <ListContacts 
+            onDeleteContact={this.removeContact} 
+            contacts={this.state.contacts} />
+        )}/>
+        <Route path='/create' component={CreateContact} />
+      </div>
+      
     );
   }
 }
